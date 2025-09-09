@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doge ETF - $DOJE</title>
+    <link rel="icon" type="image/png" href="images/banner-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-blue: #1A2C42;
+            --doge-gold: #F4C542;
+            --green: #2EB67D;
+            --cream: #FFF6E5;
+            --cyber-purple: #8A4FFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background: var(--cream);
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(255, 246, 229, 0.95);
+            border: 3px solid var(--navy-blue);
+            border-radius: 25px;
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(26, 44, 66, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--navy-blue);
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            background: var(--doge-gold);
+            color: var(--navy-blue);
+            transform: translateY(-2px);
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo-nav img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .logo-nav span {
+            font-family: 'Bungee', cursive;
+            font-size: 18px;
+            color: var(--navy-blue);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons img {
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
+            border: 2px solid var(--navy-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.1);
+            border-color: var(--doge-gold);
+        }
+
+        /* Corner decorations */
+        .corner-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .corner-decoration.top-left {
+            top: 0;
+            left: 0;
+            background: url('images/section-shape.png') no-repeat;
+            background-size: contain;
+        }
+
+        .corner-decoration.top-right {
+            top: 0;
+            right: 0;
+            background: url('images/section-shape.png') no-repeat;
+            background-size: contain;
+            transform: scaleX(-1);
+        }
+
+        .corner-decoration.bottom-left {
+            bottom: 100px;
+            left: 0;
+            background: url('images/section-shape.png') no-repeat;
+            background-size: contain;
+            transform: scaleY(-1);
+        }
+
+        .corner-decoration.bottom-right {
+            bottom: 100px;
+            right: 0;
+            background: url('images/section-shape.png') no-repeat;
+            background-size: contain;
+            transform: scale(-1, -1);
+        }
+
+        /* Home Section */
+        .home-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--cream) 0%, #E8F4FD 50%, var(--cream) 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .radial-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(244, 197, 66, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            padding: 120px 20px 60px;
+        }
+
+        .hero-title {
+            font-family: 'Bungee', cursive;
+            font-size: clamp(60px, 12vw, 120px);
+            color: var(--navy-blue);
+            text-shadow: 4px 4px 0px var(--doge-gold), 8px 8px 0px rgba(26, 44, 66, 0.3);
+            margin-bottom: 20px;
+            letter-spacing: 8px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(16px, 3vw, 24px);
+            font-weight: 800;
+            color: var(--navy-blue);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-doge {
+            width: clamp(200px, 40vw, 300px);
+            height: clamp(200px, 40vw, 300px);
+            margin: 40px auto;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-doge::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: url('images/banner-img-shape.png') no-repeat center;
+            background-size: contain;
+            z-index: -1;
+            opacity: 0.8;
+            filter: hue-rotate(220deg) saturate(1.5) brightness(0.7);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-doge img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(26, 44, 66, 0.2));
+        }
+
+        .buy-now-btn {
+            background: linear-gradient(135deg, var(--doge-gold) 0%, #FFA500 100%);
+            border: 4px solid var(--navy-blue);
+            border-radius: 25px;
+            padding: 15px 40px;
+            font-size: clamp(18px, 4vw, 24px);
+            font-weight: 900;
+            color: var(--navy-blue);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 8px 20px rgba(244, 197, 66, 0.3);
+        }
+
+        .buy-now-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 30px rgba(244, 197, 66, 0.4);
+            background: linear-gradient(135deg, #FFA500 0%, var(--doge-gold) 100%);
+        }
+
+        /* Section Divider */
+        .section-divider {
+            width: 100%;
+            height: 50px;
+            position: relative;
+            z-index: 10;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--navy-blue);
+            padding: 100px 20px;
+            position: relative;
+            color: var(--cream);
+        }
+
+        .about-title {
+            font-family: 'Bungee', cursive;
+            font-size: clamp(40px, 8vw, 80px);
+            color: var(--doge-gold);
+            text-shadow: 4px 4px 0px var(--navy-blue), 8px 8px 0px rgba(0,0,0,0.3);
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 4px;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 60px;
+        }
+
+        .about-text {
+            flex: 1;
+            font-size: clamp(16px, 2.5vw, 20px);
+            font-weight: 600;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--doge-gold);
+            font-weight: 800;
+        }
+
+        .about-video {
+            flex: 0 0 400px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 8px solid var(--doge-gold);
+            overflow: hidden;
+            position: relative;
+            background: var(--cream);
+            box-shadow: 0 0 40px rgba(244, 197, 66, 0.5);
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            border: 4px solid var(--cyber-purple);
+            border-radius: 50%;
+            background: repeating-conic-gradient(from 0deg, var(--cyber-purple) 0deg 10deg, transparent 10deg 20deg);
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .video-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ETF Info Section */
+        .etf-info-section {
+            background: linear-gradient(135deg, var(--green) 0%, #20A065 100%);
+            padding: 100px 20px;
+            position: relative;
+            color: var(--cream);
+        }
+
+        .etf-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 60px;
+        }
+
+        .etf-text {
+            background: rgba(255, 246, 229, 0.95);
+            border: 4px solid var(--navy-blue);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            color: var(--navy-blue);
+        }
+
+        .etf-title {
+            font-family: 'Bungee', cursive;
+            font-size: clamp(18px, 3vw, 24px);
+            margin-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--navy-blue);
+        }
+
+        .etf-subtitle {
+            font-size: clamp(14px, 2vw, 16px);
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--doge-gold);
+            padding-bottom: 10px;
+            font-weight: 700;
+            color: var(--cyber-purple);
+        }
+
+        .etf-description {
+            font-size: clamp(16px, 2.5vw, 18px);
+            font-weight: 600;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .etf-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .etf-image img {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Tokenomics Section */
+        .tokenomics-section {
+            background: linear-gradient(135deg, var(--cyber-purple) 0%, #6B3AC0 100%);
+            padding: 100px 20px;
+            position: relative;
+            color: var(--cream);
+        }
+
+        .tokenomics-title {
+            font-family: 'Bungee', cursive;
+            font-size: clamp(40px, 8vw, 80px);
+            color: var(--doge-gold);
+            text-shadow: 4px 4px 0px var(--navy-blue);
+            text-align: center;
+            margin-bottom: 40px;
+            letter-spacing: 4px;
+        }
+
+        .contract-address {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 60px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .buy-label {
+            background: var(--doge-gold);
+            border: 3px solid var(--navy-blue);
+            border-radius: 15px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--navy-blue);
+            text-transform: uppercase;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .contract-input {
+            background: var(--cream);
+            border: 3px solid var(--navy-blue);
+            border-radius: 15px;
+            padding: 12px 20px;
+            font-size: clamp(12px, 2vw, 16px);
+            font-weight: 700;
+            color: var(--navy-blue);
+            width: clamp(250px, 50vw, 600px);
+            text-align: center;
+        }
+
+        .copy-btn {
+            background: var(--doge-gold);
+            border: 3px solid var(--navy-blue);
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            color: var(--navy-blue);
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .tokenomics-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
+
+        .token-info {
+            background: rgba(255, 246, 229, 0.95);
+            border: 4px solid var(--navy-blue);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .token-info:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .token-label {
+            font-size: clamp(16px, 2.5vw, 18px);
+            font-weight: 800;
+            color: var(--green);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .token-value {
+            font-family: 'Bungee', cursive;
+            font-size: clamp(20px, 4vw, 28px);
+            color: var(--navy-blue);
+            word-break: break-all;
+        }
+
+        .token-description {
+            font-size: 14px;
+            color: var(--navy-blue);
+            margin-top: 10px;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--navy-blue);
+            padding: 60px 20px 20px;
+            position: relative;
+            color: var(--cream);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .footer-text {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-text .brand {
+            font-family: 'Bungee', cursive;
+            font-size: 24px;
+            color: var(--doge-gold);
+        }
+
+        .footer-text .tagline {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: var(--cream);
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .footer-nav a:hover {
+            color: var(--doge-gold);
+        }
+
+        .footer-contract {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .footer-contract input {
+            background: var(--cream);
+            border: 3px solid var(--doge-gold);
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-weight: 700;
+            width: clamp(200px, 40vw, 300px);
+            font-size: clamp(12px, 2vw, 14px);
+            color: var(--navy-blue);
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px solid var(--doge-gold);
+            padding-top: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-social img {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 2px solid var(--doge-gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social img:hover {
+            transform: scale(1.1);
+            border-color: var(--cyber-purple);
+        }
+
+        .copyright {
+            font-size: clamp(12px, 2vw, 14px);
+            font-weight: 600;
+        }
+
+        .created-by {
+            font-size: clamp(12px, 2vw, 14px);
+            font-weight: 600;
+            color: var(--doge-gold);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .about-content,
+            .etf-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tokenomics-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contract-address {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .about-video {
+                flex: none;
+                padding: 20px;
+            }
+            
+            .video-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .corner-decoration {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Glow effects */
+        .glow {
+            box-shadow: 0 0 20px rgba(244, 197, 66, 0.5);
+        }
+
+        /* Pulse animation for important elements */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-links">
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#tokenomics">TOKENOMICS</a>
+        </div>
+        <div class="logo-nav">
+            <img src="images/banner-image.png" alt="Doge ETF Logo">
+            <span>$DOJE</span>
+        </div>
+        <div class="social-icons">
+            <img src="images/telegram.jpg" alt="Telegram">
+            <img src="images/x.jpg" alt="X (Twitter)">
+            <img src="images/dexscreener.jpg" alt="DexScreener">
+        </div>
+    </nav>
+
+    <!-- Corner Decorations -->
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+
+    <!-- Home Section -->
+    <section class="home-section" id="home">
+        <div class="radial-bg"></div>
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">$DOJE</h1>
+            <p class="hero-subtitle">THE FIRST DOGECOIN ETF LAUNCHING THIS WEEK</p>
+            <div class="hero-doge">
+                <img src="images/banner-image.png" alt="Doge ETF Mascot">
+            </div>
+            <a href="#tokenomics" class="buy-now-btn pulse">BUY NOW</a>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2 class="about-title">ABOUT $DOJE</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>The <span class="highlight">REX-OSPREY DOGE ETF</span> is set to launch this week, offering U.S. investors their first direct exposure to Dogecoin through a traditional investment vehicle.</p>
+                
+                <p>Backed by <span class="highlight">REX Shares and Osprey Funds</span>, this groundbreaking ETF will trade under the ticker <span class="highlight">$DOJE</span> and represents a major milestone for the memecoin that started as a joke but captured the world's attention.</p>
+                
+                <p>With <span class="highlight">Dogecoin up 7%</span> in anticipation and outperforming major cryptocurrencies, the ETF launch is expected to bring institutional legitimacy and increased accessibility to DOGE.</p>
+            </div>
+            <div class="about-video">
+                <div class="video-container glow">
+                    <img src="images/footer-logo.png" alt="Doge ETF Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- ETF Info Section -->
+    <section class="etf-info-section" id="etf-info">
+        <div class="etf-content">
+            <div class="etf-text">
+                <h3 class="etf-title">HISTORIC LAUNCH WEEK</h3>
+                <p class="etf-subtitle">REX-OSPREY DOGE ETF - TICKER: $DOJE</p>
+                <p class="etf-description">This ETF will be the first in the U.S. to track Dogecoin's price movements, extending the run of crypto-linked ETFs following Bitcoin and Ethereum approvals. Market participants expect heightened volatility and significant speculative flows similar to other spot crypto products.</p>
+            </div>
+            <div class="etf-image">
+                <img src="images/memory-img.png" alt="ETF Launch Celebration">
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Tokenomics Section -->
+    <section class="tokenomics-section" id="tokenomics">
+        <h2 class="tokenomics-title">TOKENOMICS</h2>
+        
+        <div class="contract-address">
+            <span class="buy-label">BUY $DOJE</span>
+            <input type="text" class="contract-input" value="ETF TICKER: $DOJE - LAUNCHING THIS WEEK ON TRADITIONAL MARKETS" readonly>
+            <button class="copy-btn" onclick="copyContract()">📋</button>
+        </div>
+
+        <div class="tokenomics-content">
+            <div class="token-info">
+                <div class="token-label">TOTAL SUPPLY</div>
+                <div class="token-value">1,000,000,000</div>
+                <div class="token-description">Fixed supply with no inflation</div>
+            </div>
+
+            <div class="token-info">
+                <div class="token-label">BLOCKCHAIN</div>
+                <div class="token-value">ETH CHAIN</div>
+                <div class="token-description">Built on Ethereum for security</div>
+            </div>
+
+            <div class="token-info">
+                <div class="token-label">LIQUIDITY</div>
+                <div class="token-value">BURNED</div>
+                <div class="token-description">LP tokens permanently burned</div>
+            </div>
+
+            <div class="token-info">
+                <div class="token-label">OWNERSHIP</div>
+                <div class="token-value">RENOUNCED</div>
+                <div class="token-description">Contract ownership renounced</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <img src="images/footer-logo.png" alt="Doge ETF Logo" class="footer-logo">
+                <div class="footer-text">
+                    <div class="brand">$DOJE</div>
+                    <div class="tagline">THE FIRST DOGECOIN ETF<br>LAUNCHING THIS WEEK</div>
+                </div>
+            </div>
+            
+            <div class="footer-nav">
+                <a href="#home">HOME</a>
+                <a href="#about">ABOUT</a>
+                <a href="#tokenomics">TOKENOMICS</a>
+            </div>
+            
+            <div class="footer-contract">
+                <span style="background: var(--doge-gold); border: 3px solid var(--navy-blue); border-radius: 10px; padding: 10px 15px; font-weight: bold; color: var(--navy-blue);">BUY</span>
+                <input type="text" value="ETF TICKER: $DOJE - LAUNCHING THIS WEEK..." readonly>
+                <button class="copy-btn" onclick="copyContract()">📋</button>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="footer-social">
+                <img src="images/telegram.jpg" alt="Telegram">
+                <img src="images/x.jpg" alt="X (Twitter)">
+                <img src="

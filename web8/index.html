@@ -256,22 +256,13 @@
             background: linear-gradient(135deg, #FFA500 0%, var(--doge-gold) 100%);
         }
 
-        /* Section Divider */
-        .section-divider {
-            width: 100%;
-            height: 50px;
-            position: relative;
-            z-index: 10;
-            margin: 0;
-            padding: 0;
-        }
-
         /* About Section */
         .about-section {
             background: var(--navy-blue);
             padding: 100px 20px;
             position: relative;
             color: var(--cream);
+            margin: 0;
         }
 
         .about-title {
@@ -355,6 +346,7 @@
             padding: 100px 20px;
             position: relative;
             color: var(--cream);
+            margin: 0;
         }
 
         .etf-content {
@@ -424,6 +416,7 @@
             padding: 100px 20px;
             position: relative;
             color: var(--cream);
+            margin: 0;
         }
 
         .tokenomics-title {
@@ -546,6 +539,7 @@
             padding: 60px 20px 20px;
             position: relative;
             color: var(--cream);
+            margin: 0;
         }
 
         .footer-content {
@@ -663,6 +657,18 @@
             color: var(--doge-gold);
         }
 
+        .footer-email {
+            font-size: clamp(12px, 2vw, 14px);
+            font-weight: 600;
+            color: var(--cream);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-email:hover {
+            color: var(--doge-gold);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-container {
@@ -756,9 +762,9 @@
             <span>$DOJE</span>
         </div>
         <div class="social-icons">
-            <img src="images/telegram.jpg" alt="Telegram">
-            <img src="images/x.jpg" alt="X (Twitter)">
-            <img src="images/dexscreener.jpg" alt="DexScreener">
+            <a href="https://t.me/DogeETF_DOJE" target="_blank"><img src="images/telegram.jpg" alt="Telegram"></a>
+            <a href="https://x.com/DogeETF_DOJE" target="_blank"><img src="images/x.jpg" alt="X (Twitter)"></a>
+            <a href="https://www.dexscreener.com/ethereum/0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank"><img src="images/dexscreener.jpg" alt="DexScreener"></a>
         </div>
     </nav>
 
@@ -777,12 +783,9 @@
             <div class="hero-doge">
                 <img src="images/banner-image.png" alt="Doge ETF Mascot">
             </div>
-            <a href="#tokenomics" class="buy-now-btn pulse">BUY NOW</a>
+            <a href="https://app.uniswap.org/swap?outputCurrency=0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank" class="buy-now-btn pulse">BUY NOW</a>
         </div>
     </section>
-
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
 
     <!-- About Section -->
     <section class="about-section" id="about">
@@ -803,9 +806,6 @@
         </div>
     </section>
 
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-
     <!-- ETF Info Section -->
     <section class="etf-info-section" id="etf-info">
         <div class="etf-content">
@@ -820,16 +820,13 @@
         </div>
     </section>
 
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-
     <!-- Tokenomics Section -->
     <section class="tokenomics-section" id="tokenomics">
         <h2 class="tokenomics-title">TOKENOMICS</h2>
         
         <div class="contract-address">
             <span class="buy-label">BUY $DOJE</span>
-            <input type="text" class="contract-input" value="ETF TICKER: $DOJE - LAUNCHING THIS WEEK ON TRADITIONAL MARKETS" readonly>
+            <input type="text" class="contract-input" value="0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" readonly>
             <button class="copy-btn" onclick="copyContract()">📋</button>
         </div>
 
@@ -860,9 +857,6 @@
         </div>
     </section>
 
-    <!-- Section Divider -->
-    <div class="section-divider"></div>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -882,13 +876,109 @@
             
             <div class="footer-contract">
                 <span style="background: var(--doge-gold); border: 3px solid var(--navy-blue); border-radius: 10px; padding: 10px 15px; font-weight: bold; color: var(--navy-blue);">BUY</span>
-                <input type="text" value="ETF TICKER: $DOJE - LAUNCHING THIS WEEK..." readonly>
+                <input type="text" value="0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" readonly>
                 <button class="copy-btn" onclick="copyContract()">📋</button>
             </div>
         </div>
         
         <div class="footer-bottom">
             <div class="footer-social">
-                <img src="images/telegram.jpg" alt="Telegram">
-                <img src="images/x.jpg" alt="X (Twitter)">
-                <img src="
+                <a href="https://t.me/DogeETF_DOJE" target="_blank"><img src="images/telegram.jpg" alt="Telegram"></a>
+                <a href="https://x.com/DogeETF_DOJE" target="_blank"><img src="images/x.jpg" alt="X (Twitter)"></a>
+                <a href="https://www.dexscreener.com/ethereum/0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank"><img src="images/dexscreener.jpg" alt="DexScreener"></a>
+            </div>
+            <div class="copyright">© 2024 DOGE ETF. All rights reserved.</div>
+            <a href="mailto:DogeETF@proton.me" class="footer-email">DogeETF@proton.me</a>
+        </div>
+    </footer>
+
+    <script>
+        function copyContract() {
+            const contractAddress = "0x5f53c3d0c405eced8de8356d0cff1f3467837ef1";
+            navigator.clipboard.writeText(contractAddress).then(() => {
+                // Visual feedback
+                const copyBtns = document.querySelectorAll('.copy-btn');
+                copyBtns.forEach(btn => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '✅';
+                    btn.style.background = '#2EB67D';
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = 'var(--doge-gold)';
+                    }, 2000);
+                });
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                // Fallback for older browsers
+                const textArea = document.createElement("textarea");
+                textArea.value = contractAddress;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    const copyBtns = document.querySelectorAll('.copy-btn');
+                    copyBtns.forEach(btn => {
+                        const originalText = btn.innerHTML;
+                        btn.innerHTML = '✅';
+                        btn.style.background = '#2EB67D';
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                            btn.style.background = 'var(--doge-gold)';
+                        }, 2000);
+                    });
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+            document.body.style.transform = 'translateY(0)';
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transform = 'translateY(20px)';
+            document.body.style.transition = 'all 0.8s ease-out';
+        });
+    </script>
+</body>
+</html>

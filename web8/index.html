@@ -159,6 +159,84 @@
             flex-direction: column;
             overflow: hidden;
         }
+        
+        /* --- NEW FLOATING ANIMATION STYLES START --- */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .floating-elements img {
+            position: absolute;
+            bottom: -150px; /* Start below the viewport */
+            opacity: 0; /* Start invisible */
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.15; /* Fade in and out at the edges */
+            }
+            100% {
+                transform: translateY(-120vh) rotate(360deg); /* Move up and off screen, with a gentle rotation */
+                opacity: 0;
+            }
+        }
+
+        /* Individual properties for each floating image */
+        .floating-elements img:nth-child(1) {
+            left: 10%;
+            width: 80px;
+            animation-duration: 25s;
+            animation-delay: 0s;
+        }
+        .floating-elements img:nth-child(2) {
+            left: 20%;
+            width: 40px;
+            animation-duration: 30s;
+            animation-delay: 5s;
+        }
+        .floating-elements img:nth-child(3) {
+            left: 35%;
+            width: 90px;
+            animation-duration: 22s;
+            animation-delay: 3s;
+        }
+        .floating-elements img:nth-child(4) {
+            left: 50%;
+            width: 50px;
+            animation-duration: 35s;
+            animation-delay: 10s;
+        }
+        .floating-elements img:nth-child(5) {
+            left: 65%;
+            width: 100px;
+            animation-duration: 20s;
+            animation-delay: 8s;
+        }
+        .floating-elements img:nth-child(6) {
+            left: 85%;
+            width: 60px;
+            animation-duration: 28s;
+            animation-delay: 1s;
+        }
+        .floating-elements img:nth-child(7) {
+            left: 90%;
+            width: 45px;
+            animation-duration: 32s;
+            animation-delay: 15s;
+        }
+        /* --- NEW FLOATING ANIMATION STYLES END --- */
 
         .radial-bg {
             position: absolute;
@@ -776,6 +854,19 @@
 
     <!-- Home Section -->
     <section class="home-section" id="home">
+        
+        <!-- NEW FLOATING ELEMENTS START -->
+        <div class="floating-elements">
+            <img src="images/dogebg.jpg" alt="">
+            <img src="images/etfbg.jpg" alt="">
+            <img src="images/dogebg.jpg" alt="">
+            <img src="images/etfbg.jpg" alt="">
+            <img src="images/dogebg.jpg" alt="">
+            <img src="images/etfbg.jpg" alt="">
+            <img src="images/dogebg.jpg" alt="">
+        </div>
+        <!-- NEW FLOATING ELEMENTS END -->
+        
         <div class="radial-bg"></div>
         <div class="hero-content fade-in">
             <h1 class="hero-title">$DOJE</h1>

@@ -25,8 +25,12 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
             background: var(--cream);
+        }
+        
+        .site-wrapper {
+            overflow-x: hidden;
+            position: relative;
         }
 
         /* Navigation */
@@ -159,84 +163,6 @@
             flex-direction: column;
             overflow: hidden;
         }
-        
-        /* --- NEW FLOATING ANIMATION STYLES START --- */
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .floating-elements img {
-            position: absolute;
-            bottom: -150px; /* Start below the viewport */
-            opacity: 0; /* Start invisible */
-            animation: floatUp linear infinite;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0);
-                opacity: 0;
-            }
-            10%, 90% {
-                opacity: 0.15; /* Fade in and out at the edges */
-            }
-            100% {
-                transform: translateY(-120vh) rotate(360deg); /* Move up and off screen, with a gentle rotation */
-                opacity: 0;
-            }
-        }
-
-        /* Individual properties for each floating image */
-        .floating-elements img:nth-child(1) {
-            left: 10%;
-            width: 80px;
-            animation-duration: 25s;
-            animation-delay: 0s;
-        }
-        .floating-elements img:nth-child(2) {
-            left: 20%;
-            width: 40px;
-            animation-duration: 30s;
-            animation-delay: 5s;
-        }
-        .floating-elements img:nth-child(3) {
-            left: 35%;
-            width: 90px;
-            animation-duration: 22s;
-            animation-delay: 3s;
-        }
-        .floating-elements img:nth-child(4) {
-            left: 50%;
-            width: 50px;
-            animation-duration: 35s;
-            animation-delay: 10s;
-        }
-        .floating-elements img:nth-child(5) {
-            left: 65%;
-            width: 100px;
-            animation-duration: 20s;
-            animation-delay: 8s;
-        }
-        .floating-elements img:nth-child(6) {
-            left: 85%;
-            width: 60px;
-            animation-duration: 28s;
-            animation-delay: 1s;
-        }
-        .floating-elements img:nth-child(7) {
-            left: 90%;
-            width: 45px;
-            animation-duration: 32s;
-            animation-delay: 15s;
-        }
-        /* --- NEW FLOATING ANIMATION STYLES END --- */
 
         .radial-bg {
             position: absolute;
@@ -275,12 +201,12 @@
             text-transform: uppercase;
         }
 
+        /* --- MODIFIED --- Floating animation removed */
         .hero-doge {
-            width: clamp(200px, 40vw, 300px);
-            height: clamp(200px, 40vw, 300px);
+            width: clamp(200px, 40vw, 400px);
+            height: clamp(200px, 40vw, 400px);
             margin: 40px auto;
             position: relative;
-            animation: float 6s ease-in-out infinite;
         }
 
         .hero-doge::before {
@@ -298,11 +224,7 @@
             filter: hue-rotate(220deg) saturate(1.5) brightness(0.7);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
+        /* --- MODIFIED --- Styles now target the img/gif */
         .hero-doge img {
             width: 100%;
             height: 100%;
@@ -441,7 +363,7 @@
             border: 4px solid var(--navy-blue);
             border-radius: 20px;
             padding: 40px;
-            max-width: 550px;
+            max-width: 500px;
             position: relative;
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             color: var(--navy-blue);
@@ -828,156 +750,151 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav-container">
-        <div class="nav-links">
-            <a href="#home">HOME</a>
-            <a href="#about">ABOUT</a>
-            <a href="#tokenomics">TOKENOMICS</a>
-        </div>
-        <div class="logo-nav">
-            <img src="images/banner-image.png" alt="Doge ETF Logo">
-            <span>$DOJE</span>
-        </div>
-        <div class="social-icons">
-            <a href="https://t.me/DogeETF_DOJE" target="_blank"><img src="images/telegram.jpg" alt="Telegram"></a>
-            <a href="https://x.com/DogeETF_DOJE" target="_blank"><img src="images/x.jpg" alt="X (Twitter)"></a>
-            <a href="https://www.dexscreener.com/ethereum/0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank"><img src="images/dexscreener.jpg" alt="DexScreener"></a>
-        </div>
-    </nav>
 
-    <!-- Corner Decorations -->
-    <div class="corner-decoration top-left"></div>
-    <div class="corner-decoration top-right"></div>
-    <div class="corner-decoration bottom-left"></div>
-    <div class="corner-decoration bottom-right"></div>
+    <div class="site-wrapper">
 
-    <!-- Home Section -->
-    <section class="home-section" id="home">
-        
-        <!-- NEW FLOATING ELEMENTS START -->
-        <div class="floating-elements">
-            <img src="images/dogebg.jpg" alt="">
-            <img src="images/dogebg.jpg" alt="">
-            <img src="images/dogebg.jpg" alt="">
-            <img src="images/dogebg.jpg" alt="">
-            <img src="images/dogebg.jpg" alt="">
-            <img src="images/etfbg.jpg" alt="">
-            <img src="images/dogebg.jpg" alt="">
-        </div>
-        <!-- NEW FLOATING ELEMENTS END -->
-        
-        <div class="radial-bg"></div>
-        <div class="hero-content fade-in">
-            <h1 class="hero-title">$DOJE</h1>
-            <p class="hero-subtitle">THE FIRST DOGE ETF</p>
-            <div class="hero-doge">
-                <img src="images/banner-image.png" alt="Doge ETF Mascot">
-            </div>
-            <a href="https://app.uniswap.org/swap?outputCurrency=0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank" class="buy-now-btn pulse">BUY NOW</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <h2 class="about-title">ABOUT $DOJE</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>The <span class="highlight">REX-OSPREY DOGE ETF</span> is set to launch this week, offering U.S. investors their first direct exposure to Dogecoin through a traditional investment vehicle.</p>
-                
-                <p>Backed by <span class="highlight">REX Shares and Osprey Funds</span>, this groundbreaking ETF will trade under the ticker <span class="highlight">$DOJE</span> and represents a major milestone for the memecoin that started as a joke but captured the world's attention.</p>
-                
-                <p>With <span class="highlight">Dogecoin up 7%</span> in anticipation and outperforming major cryptocurrencies, the ETF launch is expected to bring institutional legitimacy and increased accessibility to DOGE.</p>
-            </div>
-            <div class="about-video">
-                <div class="video-container glow">
-                    <img src="images/footer-logo.png" alt="Doge ETF Logo">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ETF Info Section -->
-    <section class="etf-info-section" id="etf-info">
-        <div class="etf-content">
-            <div class="etf-text">
-                <h3 class="etf-title">HISTORIC LAUNCH WEEK</h3>
-                <p class="etf-subtitle">REX-OSPREY DOGE ETF - TICKER: $DOJE</p>
-                <p class="etf-description">This ETF will be the first in the U.S. to track Dogecoin's price movements, extending the run of crypto-linked ETFs following Bitcoin and Ethereum approvals. Market participants expect heightened volatility and significant speculative flows similar to other spot crypto products.</p>
-            </div>
-            <div class="etf-image">
-                <img src="images/memory-img.png" alt="ETF Launch Celebration">
-            </div>
-        </div>
-    </section>
-
-    <!-- Tokenomics Section -->
-    <section class="tokenomics-section" id="tokenomics">
-        <h2 class="tokenomics-title">TOKENOMICS</h2>
-        
-        <div class="contract-address">
-            <span class="buy-label">BUY $DOJE</span>
-            <input type="text" class="contract-input" value="0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" readonly>
-            <button class="copy-btn" onclick="copyContract()">📋</button>
-        </div>
-
-        <div class="tokenomics-content">
-            <div class="token-info">
-                <div class="token-label">TOTAL SUPPLY</div>
-                <div class="token-value">1,000,000,000</div>
-            </div>
-
-            <div class="token-info">
-                <div class="token-label">BLOCKCHAIN</div>
-                <div class="token-value">ETH CHAIN</div>
-            </div>
-
-            <div class="token-info">
-                <div class="token-label">LIQUIDITY</div>
-                <div class="token-value">BURNED</div>
-            </div>
-
-            <div class="token-info">
-                <div class="token-label">OWNERSHIP</div>
-                <div class="token-value">RENOUNCED</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-left">
-                <img src="images/footer-logo.png" alt="Doge ETF Logo" class="footer-logo">
-                <div class="footer-text">
-                    <div class="brand">$DOJE</div>
-                    <div class="tagline">THE FIRST DOGECOIN ETF<br>TO EVER LAUNCH</div>
-                </div>
-            </div>
-            
-            <div class="footer-nav">
+        <!-- Navigation -->
+        <nav class="nav-container">
+            <div class="nav-links">
                 <a href="#home">HOME</a>
                 <a href="#about">ABOUT</a>
                 <a href="#tokenomics">TOKENOMICS</a>
             </div>
-            
-            <div class="footer-contract">
-                <span style="background: var(--doge-gold); border: 3px solid var(--navy-blue); border-radius: 10px; padding: 10px 15px; font-weight: bold; color: var(--navy-blue);">BUY</span>
-                <input type="text" value="0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" readonly>
-                <button class="copy-btn" onclick="copyContract()">📋</button>
+            <div class="logo-nav">
+                <img src="images/banner-image.png" alt="Doge ETF Logo">
+                <span>$DOJE</span>
             </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div class="footer-social">
+            <div class="social-icons">
                 <a href="https://t.me/DogeETF_DOJE" target="_blank"><img src="images/telegram.jpg" alt="Telegram"></a>
                 <a href="https://x.com/DogeETF_DOJE" target="_blank"><img src="images/x.jpg" alt="X (Twitter)"></a>
                 <a href="https://www.dexscreener.com/ethereum/0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank"><img src="images/dexscreener.jpg" alt="DexScreener"></a>
             </div>
-            <div class="copyright">© 2024 DOGE ETF. All rights reserved.</div>
-            <a href="mailto:DogeETF@proton.me" class="footer-email">DogeETF@proton.me</a>
-        </div>
-    </footer>
+        </nav>
+
+        <!-- Corner Decorations -->
+        <div class="corner-decoration top-left"></div>
+        <div class="corner-decoration top-right"></div>
+        <div class="corner-decoration bottom-left"></div>
+        <div class="corner-decoration bottom-right"></div>
+
+        <!-- Home Section -->
+        <section class="home-section" id="home">
+            <div class="radial-bg"></div>
+            <div class="hero-content fade-in">
+                <h1 class="hero-title">$DOJE</h1>
+                <p class="hero-subtitle">THE FIRST DOGECOIN ETF TO EVER LAUNCH</p>
+                
+                <!-- --- MODIFIED --- Video replaced with stationary GIF -->
+                <div class="hero-doge">
+                    <img src="images/herosection.gif" alt="Doge ETF Mascot">
+                </div>
+
+                <a href="https://app.uniswap.org/swap?outputCurrency=0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank" class="buy-now-btn pulse">BUY NOW</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <h2 class="about-title">ABOUT $DOJE</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>The <span class="highlight">REX-OSPREY DOGE ETF</span> is set to launch this week, offering U.S. investors their first direct exposure to Dogecoin through a traditional investment vehicle.</p>
+                    
+                    <p>Backed by <span class="highlight">REX Shares and Osprey Funds</span>, this groundbreaking ETF will trade under the ticker <span class="highlight">$DOJE</span> and represents a major milestone for the memecoin that started as a joke but captured the world's attention.</p>
+                    
+                    <p>With <span class="highlight">Dogecoin up 7%</span> in anticipation and outperforming major cryptocurrencies, the ETF launch is expected to bring institutional legitimacy and increased accessibility to DOGE.</p>
+                </div>
+                <div class="about-video">
+                    <div class="video-container glow">
+                        <img src="images/footer-logo.png" alt="Doge ETF Logo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ETF Info Section -->
+        <section class="etf-info-section" id="etf-info">
+            <div class="etf-content">
+                <div class="etf-text">
+                    <h3 class="etf-title">HISTORIC LAUNCH WEEK</h3>
+                    <p class="etf-subtitle">REX-OSPREY DOGE ETF - TICKER: $DOJE</p>
+                    <p class="etf-description">This ETF will be the first in the U.S. to track Dogecoin's price movements, extending the run of crypto-linked ETFs following Bitcoin and Ethereum approvals. Market participants expect heightened volatility and significant speculative flows similar to other spot crypto products.</p>
+                </div>
+                <div class="etf-image">
+                    <img src="images/memory-img.png" alt="ETF Launch Celebration">
+                </div>
+            </div>
+        </section>
+
+        <!-- Tokenomics Section -->
+        <section class="tokenomics-section" id="tokenomics">
+            <h2 class="tokenomics-title">TOKENOMICS</h2>
+            
+            <div class="contract-address">
+                <span class="buy-label">COPY CA</span>
+                <input type="text" class="contract-input" value="0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" readonly>
+                <button class="copy-btn" onclick="copyContract()">📋</button>
+            </div>
+
+            <div class="tokenomics-content">
+                <div class="token-info">
+                    <div class="token-label">TOTAL SUPPLY</div>
+                    <div class="token-value">1,000,000,000</div>
+                </div>
+
+                <div class="token-info">
+                    <div class="token-label">BLOCKCHAIN</div>
+                    <div class="token-value">ETH CHAIN</div>
+                </div>
+
+                <div class="token-info">
+                    <div class="token-label">LIQUIDITY</div>
+                    <div class="token-value">BURNED</div>
+                </div>
+
+                <div class="token-info">
+                    <div class="token-label">OWNERSHIP</div>
+                    <div class="token-value">RENOUNCED</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <img src="images/footer-logo.png" alt="Doge ETF Logo" class="footer-logo">
+                    <div class="footer-text">
+                        <div class="brand">$DOJE</div>
+                        <div class="tagline">THE FIRST DOGECOIN ETF<br>EVER</div>
+                    </div>
+                </div>
+                
+                <div class="footer-nav">
+                    <a href="#home">HOME</a>
+                    <a href="#about">ABOUT</a>
+                    <a href="#tokenomics">TOKENOMICS</a>
+                </div>
+                
+                <div class="footer-contract">
+                    <span style="background: var(--doge-gold); border: 3px solid var(--navy-blue); border-radius: 10px; padding: 10px 15px; font-weight: bold; color: var(--navy-blue);">COPY</span>
+                    <input type="text" value="0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" readonly>
+                    <button class="copy-btn" onclick="copyContract()">📋</button>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-social">
+                    <a href="https://t.me/DogeETF_DOJE" target="_blank"><img src="images/telegram.jpg" alt="Telegram"></a>
+                    <a href="https://x.com/DogeETF_DOJE" target="_blank"><img src="images/x.jpg" alt="X (Twitter)"></a>
+                    <a href="https://www.dexscreener.com/ethereum/0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank"><img src="images/dexscreener.jpg" alt="DexScreener"></a>
+                </div>
+                <div class="copyright">© 2024 DOGE ETF. All rights reserved.</div>
+                <a href="mailto:DogeETF@proton.me" class="footer-email">DogeETF@proton.me</a>
+            </div>
+        </footer>
+
+    </div> 
 
     <script>
         function copyContract() {

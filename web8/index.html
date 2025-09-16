@@ -96,6 +96,7 @@
         .social-icons {
             display: flex;
             gap: 10px;
+            align-items: center; /* Vertically align icons */
         }
 
         .social-icons img {
@@ -603,6 +604,45 @@
             opacity: 0.8;
         }
 
+        /* --- NEW STYLES FOR COINMARKETCAP LISTING --- */
+        .coinmarketcap-listing {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .coinmarketcap-listing a {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 246, 229, 0.95);
+            border: 4px solid var(--navy-blue);
+            border-radius: 20px;
+            padding: 15px 30px;
+            text-decoration: none;
+            color: var(--navy-blue);
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .coinmarketcap-listing a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .coinmarketcap-listing img {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .coinmarketcap-listing span {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* --- END OF NEW STYLES --- */
+
         /* Footer */
         .footer {
             background: var(--navy-blue);
@@ -700,6 +740,7 @@
         .footer-social {
             display: flex;
             gap: 10px;
+            align-items: center; /* Vertically align icons */
         }
 
         .footer-social img {
@@ -838,6 +879,8 @@
                 <a href="https://t.me/DogeETF_DOJE" target="_blank"><img src="images/telegram.jpg" alt="Telegram"></a>
                 <a href="https://x.com/DogeETF_DOJE" target="_blank"><img src="images/x.jpg" alt="X (Twitter)"></a>
                 <a href="https://www.dexscreener.com/ethereum/0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank"><img src="images/dexscreener.jpg" alt="DexScreener"></a>
+                <!-- === ADDED COINMARKETCAP ICON HERE === -->
+                <a href="https://coinmarketcap.com/currencies/doge-etf-live/" target="_blank"><img src="images/cmclogo1.png" alt="CoinMarketCap"></a>
             </div>
         </nav>
 
@@ -936,6 +979,14 @@
                     <div class="token-value">RENOUNCED</div>
                 </div>
             </div>
+
+            <!-- === ADDED COINMARKETCAP SECTION HERE === -->
+            <div class="coinmarketcap-listing">
+                <a href="https://coinmarketcap.com/currencies/doge-etf-live/" target="_blank" rel="noopener noreferrer">
+                    <img src="images/cmclogo.png" alt="CoinMarketCap Logo">
+                    <span>Listed on CoinMarketCap</span>
+                </a>
+            </div>
         </section>
 
         <!-- Footer -->
@@ -967,6 +1018,8 @@
                     <a href="https://t.me/DogeETF_DOJE" target="_blank"><img src="images/telegram.jpg" alt="Telegram"></a>
                     <a href="https://x.com/DogeETF_DOJE" target="_blank"><img src="images/x.jpg" alt="X (Twitter)"></a>
                     <a href="https://www.dexscreener.com/ethereum/0x5f53c3d0c405eced8de8356d0cff1f3467837ef1" target="_blank"><img src="images/dexscreener.jpg" alt="DexScreener"></a>
+                    <!-- === ADDED COINMARKETCAP ICON HERE === -->
+                    <a href="https://coinmarketcap.com/currencies/doge-etf-live/" target="_blank"><img src="images/cmclogo.png" alt="CoinMarketCap"></a>
                 </div>
                 <div class="copyright">© 2024 DOGE ETF. All rights reserved.</div>
                 <a href="mailto:DogeETF@proton.me" class="footer-email">DogeETF@proton.me</a>
